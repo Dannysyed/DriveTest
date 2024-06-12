@@ -1,0 +1,47 @@
+<!-- Login.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<%- include('layouts/header') -%>
+
+  <body>
+    <%- include('layouts/navbar') -%>
+      <!-- Page Header-->
+      <header class="masthead" style="background-image: url('assets/img/security-concept.jpg')">
+        <div class="container position-relative px-4 px-lg-5">
+          <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+              <div class="page-heading">
+                <h1>Login</h1>
+                <span class="subheading">Please log in to your account</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+      <!-- Main Content-->
+      <main class="mb-4">
+        <div class="container px-4 px-lg-5">
+          <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+              <form action="/login/user" method="POST">
+                <div class="mb-3">
+                  <label for="username" class="form-label">Username</label>
+                  <input type="text" class="form-control" id="username" name="username" required>
+                </div>
+                <div class="mb-3">
+                  <label for="password" class="form-label">Password</label>
+                  <input type="password" class="form-control" id="password" name="password" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Login</button>
+
+                <p><a href="/signup">Doesnt have account Click here?</a></p>
+              </form>
+            </div>
+          </div>
+        </div>
+      </main>
+      <%- include('layouts/footer') -%>
+        <%- include('layouts/scripts') -%>
+  </body>
+
+</html>

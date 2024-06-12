@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('layouts/header') -%>
+
+  <body>
+    <%- include('layouts/navbar', { UserType: UserType,UserAuth:UserAuth })-%>
+    <!-- Page Header-->
+    <header
+      class="masthead"
+      style="background-image: url('assets/img/close-up.jpg')"
+    >
+      <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+          <div class="col-md-10 col-lg-8 col-xl-7">
+            <div class="page-heading">
+              <h1>Dashboard</h1>
+              <% if (user) { %>
+              <span class="subheading"
+                >Welcome <%= user.FirstName %> to your dashboard.</span
+              >
+
+              <% } else { %>
+              <span class="subheading">Welcome to your dashboard.</span>
+              <% } %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <!-- Main Content-->
+    <% if (user) { %>
+
+    <main class="mb-4">
+      <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+          <div class="col-md-10 col-lg-8 col-xl-7">
+            <h2>Your Dashboard</h2>
+            <p>
+              Welcome to your dashboard! Here, you can manage your account and
+              access various features and information.
+            </p>
+
+            <div class="card">
+              <div class="card-body">
+                <h3 class="card-title">Driver Account Information</h3>
+                <p class="card-text">View and edit your account details.</p>
+                <a href="/g2" class="btn btn-primary">Go to Account</a>
+              </div>
+            </div>
+            <div class="card mt-4">
+              <div class="card-body">
+                <h3 class="card-title">Driver Data</h3>
+                <p class="card-text">Access and manage your data.</p>
+                <a href="/g" class="btn btn-primary">Go to Data</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <% } else { %>
+    <main class="mb-4">
+      <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+          <div class="col-md-10 col-lg-8 col-xl-7">
+            <h2>Your Dashboard</h2>
+            <p>
+              Welcome to your dashboard! Here, you can manage your account and
+              access various features and information<br />
+            </p>
+            <p>Please Login to check your Details or signup .</p>
+
+            <!-- <div class="card">
+              <div class="card-body">
+                <h3 class="card-title">Driver Account Information</h3>
+                <p class="card-text">View and edit your account details.</p>
+                <a href="/g2" class="btn btn-primary">Go to Account</a>
+              </div>
+            </div> -->
+            <!-- <div class="card mt-4">
+              <div class="card-body">
+                <h3 class="card-title">Driver Data</h3>
+                <p class="card-text">Access and manage your data.</p>
+                <a href="/g" class="btn btn-primary">Go to Data</a>
+              </div>
+            </div> -->
+          </div>
+        </div>
+      </div>
+    </main>
+    <% } %> <%- include('layouts/footer') -%> <%- include('layouts/scripts') -%>
+  </body>
+</html>

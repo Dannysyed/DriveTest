@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('layouts/header') -%>
+
+  <body>
+    <%- include('layouts/navbar', { UserType: UserType, UserAuth: UserAuth })
+    -%>
+
+    <header
+      class="masthead"
+      style="background-image: url('assets/img/person-taking.jpg')"
+    >
+      <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+          <div class="col-md-10 col-lg-8 col-xl-7">
+            <div class="page-heading">
+              <h1>Enter Your G2 Data</h1>
+              <span class="subheading"
+                >Please fill out the following information:</span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="mb-4">
+      <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+          <div class="col-md-10 col-lg-8 col-xl-7">
+            <p>
+              Want to book your G2 exam? Fill out the form below with your
+              details.
+            </p>
+            <div class="my-5">
+              <form
+                data-sb-form-api-token="API_TOKEN"
+                id="contactForm"
+                data-sb-form-api-token="API_TOKEN"
+                action="/g2/user"
+                method="POST"
+              >
+                <% if (user ) { %>
+
+                <div class="my-5">
+                  <form
+                    data-sb-form-api-token="API_TOKEN"
+                    id="contactForm"
+                    action="/g2/user"
+                    method="POST"
+                  >
+                    <div class="form-floating">
+                      <input
+                        class="form-control"
+                        id="FirstName"
+                        name="FirstName"
+                        type="text"
+                        placeholder="Enter your first name..."
+                        data-sb-validations="required"
+                        value="<%= user?.FirstName %>"
+                      />
+                      <label for="firstName">First Name</label>
+                      <div
+                        class="invalid-feedback"
+                        data-sb-feedback="firstName:required"
+                      >
+                        First name is required.
+                      </div>
+                    </div>
+
+                    <div class="form-floating">
+                      <input
+                        class="form-control"
+                        name="lastname"
+                        id="lastName"
+                        type="text"
+                        placeholder="Enter your last name..."
+                        data-sb-validations="required"
+                        value="<%= user?.lastname %>"
+                      />
+                      <label for="lastname">Last Name</label>
+                      <div
+                        class="invalid-feedback"
+                        data-sb-feedback="lastName:required"
+                      >
+                        Last name is required.
+                      </div>
+                    </div>
+
+                    <div class="form-floating">
+                      <input
+                        class="form-control"
+                        id="licenseNumber"
+                        type="text"
+                        placeholder="Enter your license number (8 characters alphanumeric)..."
+                        data-sb-validations="required,regexp"
+                        data-sb-regexp="^[A-Za-z0-9]{8}$"
+                        name="LicenseNumber"
+                        value="<%= user?.LicenseNumber %>"
+                      />
+                      <label for="licenseNumber">License Number</label>
+                      <div
+                        class="invalid-feedback"
+                        data-sb-feedback="licenseNumber:required"
+                      >
+                        License number is required.
+                      </div>
+                      <div
+                        class="invalid-feedback"
+                        data-sb-feedback="licenseNumber:regexp"
+                      >
+                        License number must be 8 characters (alpha numeric).
+                      </div>
+                    </div>
+
+                    <div class="form-floating">
+                      <input
+                        class="form-control"
+                        id="age"
+                        type="number"
+                        placeholder="Enter your age..."
+                        data-sb-validations="required"
+                        name="Age"
+                        value="<%= user?.Age %>"
+                      />
+                      <label for="age">Age</label>
+                      <div
+                        class="invalid-feedback"
+                        data-sb-feedback="age:required"
+                      >
+                        Age is required.
+                      </div>
+                    </div>
+
+                    <div class="form-floating">
+                      <input
+                        class="form-control"
+                        id="dob"
+                        type="date"
+                        placeholder="Enter your date of birth..."
+                        data-sb-validations="required"
+                        value="<%= user?.DOB %>"
+                      />
+                      <label for="dob">Date of Birth</label>
+                      <div
+                        class="invalid-feedback"
+                        data-sb-feedback="dob:required"
+                      >
+                        Date of birth is required.
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="carDetails">Car Details:</label>
+                      <input
+                        class="form-control"
+                        id="make"
+                        type="text"
+                        placeholder="Make"
+                        name="CarDetails.make"
+                        required
+                        value="<%= user?.CarDetails.make %>"
+                      />
+                      <input
+                        class="form-control"
+                        name="CarDetails.model"
+                        id="model"
+                        type="text"
+                        placeholder="Model"
+                        required
+                        value="<%= user?.CarDetails.model %>"
+                      />
+                      <input
+                        class="form-control"
+                        name="CarDetails.year"
+                        id="year"
+                        type="number"
+                        placeholder="Year"
+                        required
+                        value="<%= user?.CarDetails.year %>"
+                      />
+                      <input
+                        class="form-control"
+                        name="CarDetails.platNumber"
+                        id="plateNumber"
+                        type="text"
+                        placeholder="Plate Number"
+                        required
+                        value="<%= user?.CarDetails.platNumber %>"
+                      />
+                    </div>
+
+                    <!-- Submit Button-->
+                    <button
+                      class="btn btn-primary text-uppercase"
+                      id="submitButton"
+                      type="submit"
+                    >
+                      Submit Request
+                    </button>
+                  </form>
+                </div>
+                <% } else { %>
+                <!-- Show a message or redirect to another page -->
+                <p>
+                  You have already provided G2 data. If you need to update it,
+                  please go to the update page.
+                </p>
+                <a href="/update-page">Go to Update Page</a>
+                <% } %>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <%- include('layouts/footer') -%> <%- include('layouts/scripts') -%>
+    <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+  </body>
+</html>

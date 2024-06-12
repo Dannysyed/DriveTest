@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('layouts/header') -%>
+
+  <body>
+    <%- include('layouts/navbar', { UserType: UserType, UserAuth: UserAuth })
+    -%>
+
+    <header
+      class="masthead"
+      style="background-image: url('assets/img/man-driving.jpg')"
+    >
+      <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+          <div class="col-md-10 col-lg-8 col-xl-7">
+            <div class="post-heading">
+              <h1>Book a G Road Test</h1>
+              <h2 class="subheading" id="success">
+                Please check/update your information.
+              </h2>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="mb-4">
+      <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+          <div class="col-md-10 col-lg-8 col-xl-7">
+            <div class="my-5">
+              <% if (user) { %>
+              <h2 class="mt-2">User Information</h2>
+              <p>First Name: <%= user.FirstName %></p>
+              <p>Last Name: <%= user.lastname %></p>
+              <p>Age: <%= user.Age %></p>
+              <p>License Number: <%= user.LicenseNumber %></p>
+
+              <h3>Car Details</h3>
+              <form method="POST" action="/g/updateCarDetails">
+                <input
+                  type="hidden"
+                  name="LicenseNumber"
+                  value="<%= user.LicenseNumber%>"
+                />
+                <div class="mb-3">
+                  <label for="make" class="form-label">Make</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="make"
+                    name="CarDetails.make"
+                    value="<%= user.CarDetails.make %>"
+                    required
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="model" class="form-label">Model</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="model"
+                    name="CarDetails.model"
+                    value="<%= user.CarDetails.model %>"
+                    required
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="year" class="form-label">Year</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="year"
+                    name="CarDetails.year"
+                    value="<%= user.CarDetails.year %>"
+                    required
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="platNumber" class="form-label"
+                    >Plate Number</label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="platNumber"
+                    name="CarDetails.platNumber"
+                    value="<%= user.CarDetails.platNumber %>"
+                    required
+                  />
+                </div>
+                <button type="submit" class="btn btn-primary">
+                  Update Car Details
+                </button>
+                <h1 id="success">Vehicle registered successfully</h1>
+              </form>
+              <% } else { %>
+              <p>No User detail Found</p>
+              <% } %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <%- include('layouts/footer') -%> <%- include('layouts/scripts') -%>
+  </body>
+</html>
